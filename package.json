@@ -1,0 +1,30 @@
+{
+	"name": "shapefile_processor",
+	"version": "0.0.1",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"csv-stringify": "5.5.0",
+		"geobuf": "3.0.1",
+		"pbf": "3.2.1",
+		"shapefile": "0.6.6",
+		"topojson-client": "3.1.0",
+		"topojson-server": "3.0.1",
+		"topojson-simplify": "3.0.3"
+	},
+	"devDependencies": {
+		"prettier": "2.0.5"
+	},
+	"prettier": {
+		"printWidth": 120,
+		"useTabs": true,
+		"tabWidth": 4,
+		"semi": true,
+		"singleQuote": true,
+		"trailingComma": "all",
+		"bracketSpacing": true,
+		"jsxBracketSameLine": false,
+		"arrowParens": "always"
+	}
+}
