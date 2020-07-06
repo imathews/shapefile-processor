@@ -1,3 +1,4 @@
 node_modules/
 out.csv
 package-lock.json
+/.idea/

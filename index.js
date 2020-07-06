@@ -7,12 +7,14 @@ const { feature } = require('topojson-client');
 const shapefile = require('shapefile');
 const geobuf = require('geobuf');
 const Pbf = require('pbf');
+const geojsonExtent = require('geojson-extent');
+
 
 const shpPath = process.argv[2];
 const dbfPath = process.argv[3];
 const outfilePath = process.argv[4] || 'converted_shapefile.csv';
 
-const simplificationLevels = [1, 10, 20, 50];
+const simplificationLevels = [1, 5, 10, 20, 50];
 
 shapefile
 	.read(shpPath, dbfPath)
@@ -33,8 +35,9 @@ shapefile
 			for (const property of properties) {
 				row[property] = feature.properties[property];
 			}
-			feature.properties = undefined;
+			row.bbox = geojsonExtent(feature).join(',');
 			row.geojson = JSON.stringify(feature);
+			feature.properties = undefined;
 			row.geobuf = Buffer.from(geobuf.encode(feature, new Pbf())).toString('base64');
 			for (let n = 0; n < simplificationLevels.length; n++) {
 				const feature = simplifiedGeoJson[n].features[i];
